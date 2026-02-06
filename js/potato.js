@@ -4,17 +4,11 @@
  * ポイントに応じた成長段階とビジュアル制御を担当
  */
 
-// さつまいも画像パス（品種ごとの画像）
-const POTATO_IMAGES = {
-    '紅はるか': './assets/beniharuka.png',
-    '安納芋': './assets/annoimo.png',
-    'シルクスイート': './assets/silksweet.png',
-    '鳴門金時': './assets/narutokintoki.png',
-    '紅あずま': './assets/beniazuma.png',
-    'default': './assets/beniharuka.png' // フォールバック
-};
-const SPROUT_IMAGE_PATH = './assets/potato_sprout.png';
+// さつまいも画像パス（差し替え可能）
+const POTATO_IMAGE_PATH = './assets/potato.svg';
+const SPROUT_IMAGE_PATH = './assets/sprout.svg';
 
+// 成長段階の設定
 // 成長段階の設定
 const GROWTH_STAGES = [
     { name: '芽', minPoints: 0, maxPoints: 3, scale: 0.5, useSprout: true },
@@ -61,20 +55,13 @@ function calculateScale(points) {
  * さつまいもの表示を更新
  * @param {number} points - 現在のポイント
  * @param {HTMLElement} container - 表示コンテナ
- * @param {string} [variety] - 品種名（省略可能）
  */
-function updatePotatoDisplay(points, container, variety) {
+function updatePotatoDisplay(points, container) {
     const stage = getGrowthStage(points);
     const scale = calculateScale(points);
 
-    // 画像パスを選択
-    let imagePath;
-    if (stage.useSprout) {
-        imagePath = SPROUT_IMAGE_PATH;
-    } else {
-        // 品種に基づいた画像、またはデフォルト
-        imagePath = POTATO_IMAGES[variety] || POTATO_IMAGES['default'];
-    }
+    // 画像パスを選択（芽の場合は別画像）
+    const imagePath = stage.useSprout ? SPROUT_IMAGE_PATH : POTATO_IMAGE_PATH;
 
     // コンテナをクリア
     container.innerHTML = '';
@@ -82,20 +69,14 @@ function updatePotatoDisplay(points, container, variety) {
     // 画像要素を作成
     const img = document.createElement('img');
     img.src = imagePath;
-    img.alt = variety ? `${variety} (${stage.name})` : stage.name;
+    img.alt = stage.name;
     img.className = 'potato-image';
     img.style.transform = `scale(${scale})`;
     img.style.transition = 'transform 0.5s ease-out';
 
-    // 画像ロードエラー時のフォールバック（デバッグ用）
-    img.onerror = function () {
-        console.warn(`画像が見つかりません: ${imagePath}`);
-        // 既存のSVGがあればそれにフォールバック（任意）
-        // this.src = './assets/potato.svg'; 
-    };
-
     container.appendChild(img);
 
+    // 成長段階のテキストを更新（外部で行う）
     return stage;
 }
 
@@ -148,6 +129,7 @@ window.Potato = {
     updatePotatoDisplay,
     getNextStageInfo,
     getGrowthProgress,
+    POTATO_IMAGE_PATH,
+    SPROUT_IMAGE_PATH,
     GROWTH_STAGES
-};
 };

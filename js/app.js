@@ -51,7 +51,7 @@ function renderPotatoDisplay() {
     if (!container || !appData) return;
 
     // さつまいもを表示
-    const stage = Potato.updatePotatoDisplay(appData.totalPoints, container, appData.variety);
+    const stage = Potato.updatePotatoDisplay(appData.totalPoints, container);
 
     // 成長段階を表示
     if (stageElement) {
