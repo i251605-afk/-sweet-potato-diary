@@ -9,12 +9,13 @@ const POTATO_IMAGE_PATH = './assets/potato.svg';
 const SPROUT_IMAGE_PATH = './assets/sprout.svg';
 
 // 成長段階の設定
+// 成長段階の設定
 const GROWTH_STAGES = [
-    { name: '芽', minPoints: 0, maxPoints: 10, scale: 0.3, useSprout: true },
-    { name: '小さい芋', minPoints: 11, maxPoints: 30, scale: 0.5, useSprout: false },
-    { name: '中くらいの芋', minPoints: 31, maxPoints: 60, scale: 0.7, useSprout: false },
-    { name: '大きい芋', minPoints: 61, maxPoints: 100, scale: 1.0, useSprout: false },
-    { name: '巨大芋', minPoints: 101, maxPoints: Infinity, scale: 1.0, useSprout: false }
+    { name: '芽', minPoints: 0, maxPoints: 3, scale: 0.5, useSprout: true },
+    { name: '小さい芋', minPoints: 4, maxPoints: 8, scale: 0.6, useSprout: false },
+    { name: '中くらいの芋', minPoints: 9, maxPoints: 20, scale: 0.8, useSprout: false },
+    { name: '大きい芋', minPoints: 21, maxPoints: 50, scale: 1.0, useSprout: false },
+    { name: '巨大芋', minPoints: 51, maxPoints: Infinity, scale: 1.0, useSprout: false }
 ];
 
 /**
