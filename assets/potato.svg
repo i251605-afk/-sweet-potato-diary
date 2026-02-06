@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 120" width="200" height="120">
+  <!-- 
+    さつまいもSVG - 手書き風シンプルデザイン
+    差し替え可能：このファイルを置き換えることで画像変更可能
+  -->
+  
+  <!-- メインのさつまいも本体 -->
+  <ellipse 
+    cx="100" 
+    cy="60" 
+    rx="80" 
+    ry="45" 
+    fill="#8B4513" 
+    stroke="#5D2E0C" 
+    stroke-width="3"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  
+  <!-- 左端の丸み -->
+  <ellipse 
+    cx="30" 
+    cy="58" 
+    rx="18" 
+    ry="25" 
+    fill="#8B4513" 
+    stroke="#5D2E0C" 
+    stroke-width="2"
+  />
+  
+  <!-- 右端の丸み -->
+  <ellipse 
+    cx="175" 
+    cy="62" 
+    rx="15" 
+    ry="20" 
+    fill="#8B4513" 
+    stroke="#5D2E0C" 
+    stroke-width="2"
+  />
+  
+  <!-- 手書き風の表面ライン1 -->
+  <path 
+    d="M 40 45 Q 70 35, 100 40 Q 130 45, 160 38" 
+    fill="none" 
+    stroke="#5D2E0C" 
+    stroke-width="2" 
+    stroke-linecap="round"
+    opacity="0.6"
+  />
+  
+  <!-- 手書き風の表面ライン2 -->
+  <path 
+    d="M 50 75 Q 80 85, 120 78 Q 150 72, 170 80" 
+    fill="none" 
+    stroke="#5D2E0C" 
+    stroke-width="2" 
+    stroke-linecap="round"
+    opacity="0.5"
+  />
+  
+  <!-- ハイライト -->
+  <ellipse 
+    cx="80" 
+    cy="45" 
+    rx="25" 
+    ry="10" 
+    fill="#A0522D" 
+    opacity="0.4"
+  />
+</svg>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="さつまいも日記 - 日記を書いてさつまいもを育てよう！">
+    <meta name="theme-color" content="#D2691E">
+    
+    <title>さつまいも日記 🍠</title>
+    
+    <!-- Google Fonts - 手書き風フォント -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- スタイルシート -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- ========== ホーム画面 ========== -->
+        <section id="home-screen" class="screen active">
+            <!-- ヘッダー -->
+            <header class="header">
+                <h1>🍠 さつまいも日記</h1>
+                <p id="variety-name" class="variety-name">品種: 読み込み中...</p>
+            </header>
+            
+            <!-- さつまいも表示 -->
+            <div class="potato-display">
+                <div id="potato-container" class="potato-container">
+                    <!-- JavaScriptで描画 -->
+                </div>
+                <p id="growth-stage" class="growth-stage">読み込み中...</p>
+                <p id="next-stage-info" class="next-stage-info"></p>
+            </div>
+            
+            <!-- ポイント表示 -->
+            <div class="points-display">
+                <p class="points-label">現在のポイント</p>
+                <p class="points-value">
+                    <span id="total-points">0</span>
+                    <span class="points-unit">pt</span>
+                </p>
+            </div>
+            
+            <!-- 投稿ボタン -->
+            <button id="post-btn" class="btn btn-primary btn-large">
+                <span class="btn-icon">✏️</span>
+                日記を書く
+            </button>
+        </section>
+        
+        <!-- ========== 投稿画面 ========== -->
+        <section id="post-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" aria-label="戻る">←</button>
+                <h2 class="screen-title">新しい投稿</h2>
+            </div>
+            
+            <form id="post-form">
+                <!-- 日記入力 -->
+                <div class="form-group">
+                    <label for="diary-input" class="form-label">
+                        📝 日記（+2pt）
+                    </label>
+                    <textarea 
+                        id="diary-input" 
+                        class="form-textarea" 
+                        placeholder="今日のさつまいもの様子や、あなたの気持ちを書いてみよう..."
+                        rows="5"
+                    ></textarea>
+                </div>
+                
+                <!-- 写真アップロード -->
+                <div class="form-group">
+                    <label class="form-label">
+                        📷 写真（+1pt）
+                    </label>
+                    <div class="image-upload">
+                        <input 
+                            type="file" 
+                            id="image-input" 
+                            class="image-upload-input" 
+                            accept="image/*"
+                        >
+                        <div class="image-upload-icon">📸</div>
+                        <p class="image-upload-text">タップして写真を選択</p>
+                    </div>
+                    <div id="image-preview" class="image-preview hidden"></div>
+                    <button type="button" id="clear-image-btn" class="btn btn-secondary hidden mb-md" style="margin-top: 8px;">
+                        写真を削除
+                    </button>
+                </div>
+                
+                <!-- ポイント説明 -->
+                <div class="card mb-lg">
+                    <p class="text-center" style="color: var(--text-light); font-size: 14px;">
+                        💡 日記+写真で投稿すると <strong>3pt</strong> もらえます！
+                    </p>
+                </div>
+                
+                <!-- 投稿ボタン -->
+                <button type="submit" class="btn btn-primary btn-large">
+                    <span class="btn-icon">🌱</span>
+                    投稿する
+                </button>
+            </form>
+        </section>
+        
+        <!-- ========== 日記一覧画面 ========== -->
+        <section id="diary-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" aria-label="戻る">←</button>
+                <h2 class="screen-title">日記一覧</h2>
+            </div>
+            
+            <div id="posts-list">
+                <!-- JavaScriptで描画 -->
+            </div>
+        </section>
+        
+        <!-- ========== ポイント履歴画面 ========== -->
+        <section id="history-screen" class="screen">
+            <div class="screen-header">
+                <button class="back-btn" aria-label="戻る">←</button>
+                <h2 class="screen-title">ポイント履歴</h2>
+            </div>
+            
+            <div class="card">
+                <div id="point-history-list">
+                    <!-- JavaScriptで描画 -->
+                </div>
+            </div>
+        </section>
+        
+    </div>
+    
+    <!-- ========== ボトムナビゲーション ========== -->
+    <nav class="bottom-nav">
+        <button class="nav-item active" data-screen="home">
+            <span class="nav-icon">🏠</span>
+            <span class="nav-label">ホーム</span>
+        </button>
+        <button class="nav-item" data-screen="diary">
+            <span class="nav-icon">📖</span>
+            <span class="nav-label">日記一覧</span>
+        </button>
+        <button class="nav-item" data-screen="history">
+            <span class="nav-icon">📊</span>
+            <span class="nav-label">履歴</span>
+        </button>
+    </nav>
+    
+    <!-- JavaScriptモジュール（順序重要） -->
+    <script src="./js/storage.js"></script>
+    <script src="./js/points.js"></script>
+    <script src="./js/potato.js"></script>
+    <script src="./js/app.js"></script>
+</body>
+</html>
