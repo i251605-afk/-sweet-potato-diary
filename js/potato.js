@@ -6,16 +6,17 @@
 
 // さつまいも画像パス（差し替え可能）
 const POTATO_IMAGE_PATH = './assets/beni_haruka.png';
+const SMALL_POTATO_IMAGE_PATH = './assets/small_potato.png';
 const SPROUT_IMAGE_PATH = './assets/sprout.svg';
 
 // 成長段階の設定
 // 成長段階の設定
 const GROWTH_STAGES = [
-    { name: '芽', minPoints: 0, maxPoints: 3, scale: 0.5, useSprout: true },
-    { name: '小さい芋', minPoints: 4, maxPoints: 8, scale: 0.6, useSprout: false },
-    { name: '中くらいの芋', minPoints: 9, maxPoints: 20, scale: 0.8, useSprout: false },
-    { name: '大きい芋', minPoints: 21, maxPoints: 50, scale: 1.0, useSprout: false },
-    { name: '巨大芋', minPoints: 51, maxPoints: Infinity, scale: 1.0, useSprout: false }
+    { name: '芽', minPoints: 0, maxPoints: 3, scale: 0.5, useSprout: true, useSmall: false },
+    { name: '小さい芋', minPoints: 4, maxPoints: 8, scale: 0.6, useSprout: false, useSmall: true },
+    { name: '中くらいの芋', minPoints: 9, maxPoints: 20, scale: 0.8, useSprout: false, useSmall: false },
+    { name: '大きい芋', minPoints: 21, maxPoints: 50, scale: 1.0, useSprout: false, useSmall: false },
+    { name: '巨大芋', minPoints: 51, maxPoints: Infinity, scale: 1.0, useSprout: false, useSmall: false }
 ];
 
 /**
@@ -60,8 +61,13 @@ function updatePotatoDisplay(points, container) {
     const stage = getGrowthStage(points);
     const scale = calculateScale(points);
 
-    // 画像パスを選択（芽の場合は別画像）
-    const imagePath = stage.useSprout ? SPROUT_IMAGE_PATH : POTATO_IMAGE_PATH;
+    // 画像パスを選択（段階に応じて別画像）
+    let imagePath = POTATO_IMAGE_PATH;
+    if (stage.useSprout) {
+        imagePath = SPROUT_IMAGE_PATH;
+    } else if (stage.useSmall) {
+        imagePath = SMALL_POTATO_IMAGE_PATH;
+    }
 
     // コンテナをクリア
     container.innerHTML = '';
@@ -130,6 +136,7 @@ window.Potato = {
     getNextStageInfo,
     getGrowthProgress,
     POTATO_IMAGE_PATH,
+    SMALL_POTATO_IMAGE_PATH,
     SPROUT_IMAGE_PATH,
     GROWTH_STAGES
 };
