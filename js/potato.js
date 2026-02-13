@@ -5,7 +5,7 @@
  */
 
 // さつまいも画像パス（差し替え可能）
-const POTATO_IMAGE_PATH = './assets/potato.svg';
+const POTATO_IMAGE_PATH = './assets/beni_haruka.png';
 const SPROUT_IMAGE_PATH = './assets/sprout.svg';
 
 // 成長段階の設定
